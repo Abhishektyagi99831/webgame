@@ -31,19 +31,11 @@
         <a class="nav-link text-light" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li> -->
       <li class="nav-item active">
+        <a class="nav-link text-light" href="./assest/contactus.php">Contact</a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link text-light" href="Privacy.php">Privacy Policy</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Category
-        </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#"><h6 class="text-light">Action</h6></a>
-          <a class="dropdown-item" href="#"><h6 class="text-light">Advanture</h6></a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#"><h6 class="text-light">Puzzle</h6></a>
-        </div>
-      </li> 
 
     </ul>
   </div>
@@ -54,13 +46,13 @@
       <div class="col-md-12 col-sm-12 col-xs-12 "><h3 class="text-light">Top Games</h3>
         <div class="row">
           <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Cube Game</h5>
-            <a href="cube.html"><img src="./assest/image/cube-img.png" alt="Cube" href="" style="width:100%" /></a>
+            <a href="./Game/cube.html"><img src="./assest/image/cube-img.png" alt="Cube" href="" style="width:100%" /></a>
           </div>
           <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Colorn Game</h5>
-            <a href="coloron.html"><img src="./assest/image/colorn-img.png" alt="Colorn" style="width:100%" height="91%"/></a>
+            <a href="./Game/coloron.html"><img src="./assest/image/colorn-img.png" alt="Colorn" style="width:100%" height="91%"/></a>
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Third</h5>
-            <img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
+          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Pinball Game</h5>
+          <a href="./Game/pinball.html"><img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
           </div>
         </div>
       </div>

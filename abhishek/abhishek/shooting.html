@@ -1,0 +1,1238 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  
+  <title>CodePen - pure css shoot game -  no javascript - no image</title>
+  
+  
+  
+  
+<style>
+@import url(https://fonts.googleapis.com/css?family=Bungee);
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --anim-delay: 0s;
+  --classic-target: radial-gradient(
+      circle at center,
+      orangered 15%,
+      white 0 40%,
+      orangered 0 50%,
+      white 0 70%,
+      orangered 0 80%,
+      white 0
+  );
+  --alien-target: radial-gradient(ellipse 100% 50% at 50% 30%, lime 0 10%, transparent 0),
+      radial-gradient(circle at 50% 37.5%, purple 5%, whitesmoke 0 10%, black 0 12.5%, transparent 0),
+      radial-gradient(ellipse 100% 50% at 50% 70%, lime 0 12.5%, transparent 0),
+      radial-gradient(ellipse 100% 50% at 50% 65%, transparent 10%, black 0 12.5%, transparent 0),
+      radial-gradient(ellipse 50% 75% at 50% 50%, lime 50%, transparent 0%),
+      radial-gradient(ellipse 100% 50% at 50% 90%, grey 50%, transparent 0%);
+  --can-target: radial-gradient(ellipse at 35% 12.5%, #555 6%, #0000 6.1% 0),
+      radial-gradient(ellipse 100% 50% at 50% 10%, #bbb 30%, transparent 0),
+      radial-gradient(ellipse 75% 100% at 40% 70%, #0000 77.5%, white 0) 1% 100% / 50% 85%,
+      radial-gradient(ellipse 75% 100% at 60% 30%, #0000 77.5%, white 0) 100% 100% / 50% 85%,
+      linear-gradient(90deg, transparent 20%, red 0 80%, transparent 0);
+  --classic-bg: radial-gradient(circle at 85% 25%, #f8da37 5%, #0000 5.5%),
+      radial-gradient(ellipse 25% 85% at 10% 40%, #69d10a 20%, #0000 0),
+      radial-gradient(ellipse 75% 100% at 75% 40%, #0000 75%, #441a0a 0) 10% 70% / 5% 25%,
+      radial-gradient(ellipse 75% 100% at 25% 40%, #0000 75%, #441a0a 0) 6% 70% / 5% 25%,
+      linear-gradient(#8abded 0 75%, #69d10a 75%);
+  --classic-bg-color: #8abded;
+  --alien-bg: radial-gradient(ellipse 100% 25% at 50% 0%, #0000 25%, #f6df96aa 30%, #0000 32%) 85% 90% / 30% 70%,
+      radial-gradient(circle at 74.5% 27%, #6cb3a9 7.5%, #0000 8%),
+      radial-gradient(ellipse 100% 25% at 50% 100%, #0000 25%, #f6df96aa 30%, #0000 32%) 85% -143.2% / 30% 70%,
+      radial-gradient(circle at 12.5% 52.5%, #555 1.5%, #0000 1.75%),
+      radial-gradient(circle at 12.3% 52.5%, #665 1.75%, #0000 2%),
+      radial-gradient(circle at 22.5% 48.5%, #555 2.25%, #0000 2.6%),
+      radial-gradient(circle at 22.15% 48.35%, #665 2.75%, #0000 3.1%),
+      radial-gradient(circle at 16.5% 61.5%, #555 1.25%, #0000 1.5%),
+      radial-gradient(circle at 16.3% 61.75%, #665 1.5%, #0000 1.75%),
+      radial-gradient(circle at 17.5% 55%, #777 10%, #0000 10.5%), linear-gradient(#222 0 75%, #555 75%), #222;
+  --alien-bg-color: #222;
+  --can-bg: radial-gradient(circle at 12.5% 22.5%, #f8da37 5%, #0000 5.5%),
+      radial-gradient(ellipse 25% 85% at 80% 95%, #69d10a 20%, #0000 0) 76% 150% / 40% 150%,
+      radial-gradient(ellipse 5% 40% at 83% 60%, #69d10a 7.5%, #0000 0),
+      radial-gradient(ellipse 100% 15% at 0% 50%, #69d10a 20%, #0000 0) 99% 75% / 20% 50%,
+      radial-gradient(ellipse 7.5% 40% at 73.25% 52.25%, #69d10a 5%, #0000 0),
+      radial-gradient(ellipse 140% 15% at 90% 95%, #69d10a 20%, #0000 0) 75% 30% / 15% 37%,
+      linear-gradient(#1e92ff 0 75%, #f8da37 75%);
+  --can-bg-color: #1e92ff;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.game-container {
+  background: var(--classic-bg-color);
+  font-family: "bungee", sans-serif;
+  line-height: 1rem;
+  color: #ddd;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.game-container > div:not(:first-of-type) {
+  position: absolute;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+.lang-fr {
+  display: none;
+}
+
+.bg-container {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 60vw;
+  background: var(--classic-bg);
+  background-repeat: no-repeat;
+}
+
+.homepage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.game-name {
+  position: relative;
+  font-size: 3rem;
+  line-height: 7.5rem;
+  text-align: center;
+  height: 40vh;
+  display: grid;
+  place-content: center;
+  text-shadow: 1px 1px 5px black;
+}
+.game-name h1 {
+  z-index: 2;
+}
+.game-name::after {
+  content: "";
+  position: absolute;
+  width: max(40vmin, 25rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--classic-target);
+  background-repeat: no-repeat;
+}
+
+.game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: max(50vw, 17rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-label, .back-btn {
+  cursor: pointer;
+  width: 15rem;
+  aspect-ratio: 2;
+  border-radius: 5rem;
+  font-size: 1.75rem;
+  color: #222;
+  text-shadow: 1px 1px 2px whitesmoke;
+  display: grid;
+  place-content: center;
+  background: #cacacaca;
+}
+
+#launcher:checked ~ .game-container .game-board {
+  display: flex;
+}
+#launcher:checked ~ .game-container .homepage {
+  display: none;
+}
+
+#rules:checked ~ .game-container .rules-wrapper {
+  display: flex;
+}
+#rules:checked ~ .game-container .homepage {
+  display: none;
+}
+
+#settings:checked ~ .game-container .settings-wrapper {
+  display: flex;
+}
+#settings:checked ~ .game-container .homepage {
+  display: none;
+}
+
+.classic-target {
+  background: var(--classic-target);
+  background-repeat: no-repeat;
+}
+
+#classic:checked ~ .game-container {
+  background: var(--classic-bg-color);
+}
+#classic:checked ~ .game-container .bg-container {
+  background: var(--classic-bg);
+  background-repeat: no-repeat;
+}
+#classic:checked ~ .game-container .settings-wrapper .classic-target::after {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: 75%;
+  height: 1.25rem;
+  width: 1.825rem;
+  border: 0.375rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#classic:checked ~ .game-container .homepage .game-name::after {
+  background: var(--classic-target);
+  background-repeat: no-repeat;
+}
+#classic:checked ~ .game-container .game-board .label-target {
+  background: var(--classic-target);
+  background-repeat: no-repeat;
+}
+
+.alien-target {
+  background: var(--alien-target);
+  background-repeat: no-repeat;
+}
+
+#alien:checked ~ .game-container {
+  background: var(--alien-bg-color);
+}
+#alien:checked ~ .game-container .bg-container {
+  background: var(--alien-bg);
+  background-repeat: no-repeat;
+}
+#alien:checked ~ .game-container .settings-wrapper .alien-target::after {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: 75%;
+  height: 1.25rem;
+  width: 1.825rem;
+  border: 0.375rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#alien:checked ~ .game-container .homepage .game-name::after {
+  background: var(--alien-target);
+  background-repeat: no-repeat;
+}
+#alien:checked ~ .game-container .game-board .label-target {
+  background: var(--alien-target);
+  background-repeat: no-repeat;
+}
+
+.can-target {
+  background: var(--can-target);
+  background-repeat: no-repeat;
+}
+
+#can:checked ~ .game-container {
+  background: var(--can-bg-color);
+}
+#can:checked ~ .game-container .bg-container {
+  background: var(--can-bg);
+  background-repeat: no-repeat;
+}
+#can:checked ~ .game-container .settings-wrapper .can-target::after {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  left: 75%;
+  height: 1.25rem;
+  width: 1.825rem;
+  border: 0.375rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#can:checked ~ .game-container .homepage .game-name::after {
+  background: var(--can-target);
+  background-repeat: no-repeat;
+}
+#can:checked ~ .game-container .game-board .label-target {
+  background: var(--can-target);
+  background-repeat: no-repeat;
+}
+
+.settings-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title {
+  font-size: 2.5rem;
+  text-shadow: 1px 1px 5px #0005;
+}
+
+.settings-elts-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  background: #cacacaca;
+  padding: 1rem 0.5rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  color: #222;
+  text-shadow: 1px 1px 2px whitesmoke;
+}
+.settings-elts-wrapper .elt-title {
+  display: grid;
+  place-content: center;
+  font-size: 1.5rem;
+}
+
+.target-choice-container,
+.speed-choice-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: max(50vw, 30rem);
+  grid-gap: 0.5rem;
+}
+.target-choice-container > *,
+.speed-choice-container > * {
+  justify-self: center;
+}
+
+.target-choice-label {
+  position: relative;
+  cursor: pointer;
+  width: max(12.5vw, 7.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.speed-choice-label {
+  position: relative;
+  cursor: pointer;
+}
+
+#slow:checked ~ .game-container .settings-wrapper .slow-target::after {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 110%;
+  height: 1rem;
+  width: 1.5rem;
+  border: 0.25rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#slow:checked ~ .game-container .game-board .label-target {
+  animation-duration: 10s;
+}
+
+#normal:checked ~ .game-container .settings-wrapper .normal-target::after {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 110%;
+  height: 1rem;
+  width: 1.5rem;
+  border: 0.25rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#normal:checked ~ .game-container .game-board .label-target {
+  animation-duration: 7.5s;
+}
+
+#fast:checked ~ .game-container .settings-wrapper .fast-target::after {
+  content: "";
+  position: absolute;
+  top: -0.5rem;
+  left: 110%;
+  height: 1rem;
+  width: 1.5rem;
+  border: 0.25rem solid green;
+  border-top-color: #0000;
+  border-right-color: #0000;
+  transform: rotate(-55deg);
+}
+#fast:checked ~ .game-container .game-board .label-target {
+  animation-duration: 5s;
+}
+
+.language-choice-container {
+  width: max(50vw, 30rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.language-choice-label {
+  position: relative;
+  width: 5rem;
+  aspect-ratio: 2;
+  border-radius: 5rem;
+  border: 2px solid whitesmoke;
+  cursor: pointer;
+}
+.language-choice-label::after {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  content: "";
+  width: 2rem;
+  aspect-ratio: 1;
+  border-radius: inherit;
+  background: whitesmoke;
+  transform: translateX(var(--language-toggle-value));
+  transition: transform 0.25s ease-in-out;
+}
+
+#language:checked ~ .game-container .settings-wrapper {
+  --language-toggle-value: 2.5rem;
+}
+#language:checked ~ .game-container .homepage .lang-en,
+#language:checked ~ .game-container .settings-wrapper .lang-en,
+#language:checked ~ .game-container .rules-wrapper .lang-en,
+#language:checked ~ .game-container .container .lang-en {
+  display: none;
+}
+#language:checked ~ .game-container .homepage .lang-fr,
+#language:checked ~ .game-container .settings-wrapper .lang-fr,
+#language:checked ~ .game-container .rules-wrapper .lang-fr,
+#language:checked ~ .game-container .container .lang-fr {
+  display: inline;
+}
+
+.rules-wrapper {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
+}
+.rules-wrapper > p {
+  line-height: 3.5rem;
+  text-shadow: 1px 1px 5px #0005;
+  width: 75vw;
+}
+
+.game-board {
+  --score-t1: 0%;
+  --score-t2: 0%;
+  --score-t3: 0%;
+  --score-t4: 0%;
+  --score-t5: 0%;
+  --score-t6: 0%;
+  --score-t7: 0%;
+  --score-t8: 0%;
+  --score-t9: 0%;
+  --score-t10: 0%;
+  --score-t11: 0%;
+  --score-t12: 0%;
+  --score-t13: 0%;
+  --score-t14: 0%;
+  --score-t15: 0%;
+  --score-t16: 0%;
+  --score-t17: 0%;
+  --score-t18: 0%;
+  --score-t19: 0%;
+  --score-t20: 0%;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: none;
+}
+
+.game-infos {
+  position: absolute;
+  background: #5555;
+  z-index: 10;
+}
+
+.target-container {
+  position: absolute;
+  top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.label-target {
+  display: block;
+  position: relative;
+  left: -7.5vmin;
+  cursor: crosshair;
+  width: 7.5vmin;
+  height: 7.5vmin;
+  border-radius: 50%;
+  background: var(--classic-target);
+  animation: 7.5s target-mvt var(--anim-delay) linear infinite;
+}
+
+#target-1:checked ~ .game-container .game-board {
+  --score-t1: 2.5%;
+}
+#target-1:checked ~ .game-container .game-board .label-1 {
+  display: none;
+}
+#target-1:checked ~ .game-container .game-board .label-11 {
+  display: block;
+}
+
+.label-1 {
+  animation: 9s target-mvt 1350ms linear infinite;
+}
+
+#target-2:checked ~ .game-container .game-board {
+  --score-t2: 2.5%;
+}
+#target-2:checked ~ .game-container .game-board .label-2 {
+  display: none;
+}
+#target-2:checked ~ .game-container .game-board .label-12 {
+  display: block;
+}
+
+.label-2 {
+  animation: 7s target-mvt 4450ms linear infinite;
+}
+
+#target-3:checked ~ .game-container .game-board {
+  --score-t3: 2.5%;
+}
+#target-3:checked ~ .game-container .game-board .label-3 {
+  display: none;
+}
+#target-3:checked ~ .game-container .game-board .label-13 {
+  display: block;
+}
+
+.label-3 {
+  animation: 8s target-mvt 1850ms linear infinite;
+}
+
+#target-4:checked ~ .game-container .game-board {
+  --score-t4: 2.5%;
+}
+#target-4:checked ~ .game-container .game-board .label-4 {
+  display: none;
+}
+#target-4:checked ~ .game-container .game-board .label-14 {
+  display: block;
+}
+
+.label-4 {
+  animation: 9s target-mvt 4600ms linear infinite;
+}
+
+#target-5:checked ~ .game-container .game-board {
+  --score-t5: 2.5%;
+}
+#target-5:checked ~ .game-container .game-board .label-5 {
+  display: none;
+}
+#target-5:checked ~ .game-container .game-board .label-15 {
+  display: block;
+}
+
+.label-5 {
+  animation: 10s target-mvt 4650ms linear infinite;
+}
+
+#target-6:checked ~ .game-container .game-board {
+  --score-t6: 2.5%;
+}
+#target-6:checked ~ .game-container .game-board .label-6 {
+  display: none;
+}
+#target-6:checked ~ .game-container .game-board .label-16 {
+  display: block;
+}
+
+.label-6 {
+  animation: 8s target-mvt 100ms linear infinite;
+}
+
+#target-7:checked ~ .game-container .game-board {
+  --score-t7: 2.5%;
+}
+#target-7:checked ~ .game-container .game-board .label-7 {
+  display: none;
+}
+#target-7:checked ~ .game-container .game-board .label-17 {
+  display: block;
+}
+
+.label-7 {
+  animation: 10s target-mvt 4050ms linear infinite;
+}
+
+#target-8:checked ~ .game-container .game-board {
+  --score-t8: 2.5%;
+}
+#target-8:checked ~ .game-container .game-board .label-8 {
+  display: none;
+}
+#target-8:checked ~ .game-container .game-board .label-18 {
+  display: block;
+}
+
+.label-8 {
+  animation: 6s target-mvt 1750ms linear infinite;
+}
+
+#target-9:checked ~ .game-container .game-board {
+  --score-t9: 2.5%;
+}
+#target-9:checked ~ .game-container .game-board .label-9 {
+  display: none;
+}
+#target-9:checked ~ .game-container .game-board .label-19 {
+  display: block;
+}
+
+.label-9 {
+  animation: 9s target-mvt 3300ms linear infinite;
+}
+
+#target-10:checked ~ .game-container .game-board {
+  --score-t10: 2.5%;
+}
+#target-10:checked ~ .game-container .game-board .label-10 {
+  display: none;
+}
+#target-10:checked ~ .game-container .game-board .label-20 {
+  display: block;
+}
+
+.label-10 {
+  animation: 6s target-mvt 2550ms linear infinite;
+}
+
+#target-11:checked ~ .game-container .game-board {
+  --score-t11: 7.5%;
+}
+#target-11:checked ~ .game-container .game-board .label-11 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-11 {
+  display: none;
+  animation: 8s target-mvt-2 2900ms linear infinite;
+}
+
+#target-12:checked ~ .game-container .game-board {
+  --score-t12: 7.5%;
+}
+#target-12:checked ~ .game-container .game-board .label-12 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-12 {
+  display: none;
+  animation: 7s target-mvt-2 3800ms linear infinite;
+}
+
+#target-13:checked ~ .game-container .game-board {
+  --score-t13: 7.5%;
+}
+#target-13:checked ~ .game-container .game-board .label-13 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-13 {
+  display: none;
+  animation: 8s target-mvt-2 2100ms linear infinite;
+}
+
+#target-14:checked ~ .game-container .game-board {
+  --score-t14: 7.5%;
+}
+#target-14:checked ~ .game-container .game-board .label-14 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-14 {
+  display: none;
+  animation: 6s target-mvt-2 500ms linear infinite;
+}
+
+#target-15:checked ~ .game-container .game-board {
+  --score-t15: 7.5%;
+}
+#target-15:checked ~ .game-container .game-board .label-15 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-15 {
+  display: none;
+  animation: 7s target-mvt-2 4750ms linear infinite;
+}
+
+#target-16:checked ~ .game-container .game-board {
+  --score-t16: 7.5%;
+}
+#target-16:checked ~ .game-container .game-board .label-16 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-16 {
+  display: none;
+  animation: 6s target-mvt-2 1750ms linear infinite;
+}
+
+#target-17:checked ~ .game-container .game-board {
+  --score-t17: 7.5%;
+}
+#target-17:checked ~ .game-container .game-board .label-17 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-17 {
+  display: none;
+  animation: 8s target-mvt-2 1350ms linear infinite;
+}
+
+#target-18:checked ~ .game-container .game-board {
+  --score-t18: 7.5%;
+}
+#target-18:checked ~ .game-container .game-board .label-18 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-18 {
+  display: none;
+  animation: 10s target-mvt-2 1750ms linear infinite;
+}
+
+#target-19:checked ~ .game-container .game-board {
+  --score-t19: 7.5%;
+}
+#target-19:checked ~ .game-container .game-board .label-19 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-19 {
+  display: none;
+  animation: 8s target-mvt-2 1050ms linear infinite;
+}
+
+#target-20:checked ~ .game-container .game-board {
+  --score-t20: 7.5%;
+}
+#target-20:checked ~ .game-container .game-board .label-20 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label-20 {
+  display: none;
+  animation: 10s target-mvt-2 800ms linear infinite;
+}
+
+.info-container {
+  height: 5vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info-container span {
+  padding-left: 1rem;
+}
+
+.time-bar-container {
+  position: relative;
+  width: 90vw;
+  margin-right: 2vw;
+  height: 4vh;
+}
+.time-bar-container::after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background: blue;
+  animation: 30s time-left linear forwards;
+  transform-origin: left;
+}
+
+.game-score {
+  --score-i-1: calc(calc(var(--score-t1) + var(--score-t2)) + calc(var(--score-t3) + var(--score-t4)));
+  --score-i-2: calc(calc(var(--score-t5) + var(--score-t6)) + calc(var(--score-t7) + var(--score-t8)));
+  --score-i-3: calc(calc(var(--score-t9) + var(--score-t10)) + calc(var(--score-t11) + var(--score-t12)));
+  --score-i-4: calc(calc(var(--score-t13) + var(--score-t14)) + calc(var(--score-t15) + var(--score-t16)));
+  --score-i-5: calc(calc(var(--score-t17) + var(--score-t18)) + calc(var(--score-t19) + var(--score-t20)));
+  --score-i-11: calc(calc(var(--score-i-1) + var(--score-i-2)) + calc(var(--score-i-3) + var(--score-i-4)));
+  --score-tot: calc(var(--score-i-11) + var(--score-i-5));
+  position: relative;
+  height: 4vh;
+  width: 90vw;
+  margin-right: 2vw;
+  border: 2px solid #cacacaca;
+  background: #cacacaca;
+}
+.game-score::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(4vh - 4px);
+  width: inherit;
+  background: rebeccapurple;
+  border-right: 2px solid #cacacaca;
+  transition: transform 100ms linear;
+  transform: scaleX(var(--score-tot));
+  transform-origin: left;
+}
+
+.looser {
+  display: flex;
+  animation: 30s game-ended linear forwards;
+}
+
+#target-1:checked ~ #target-2:checked ~ #target-3:checked ~ #target-4:checked ~ #target-5:checked ~ #target-6:checked ~ #target-7:checked ~ #target-8:checked ~ #target-9:checked ~ #target-10:checked ~ #target-11:checked ~ #target-12:checked ~ #target-13:checked ~ #target-14:checked ~ #target-15:checked ~ #target-16:checked ~ #target-17:checked ~ #target-18:checked ~ #target-19:checked ~ #target-20:checked ~ .game-container .winner {
+  display: flex;
+}
+
+.winner,
+.about {
+  display: none;
+}
+
+.last-scene {
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 20;
+  font-size: 5rem;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #222;
+}
+
+.winner {
+  opacity: 0;
+  animation: fade-in 0.75s ease-in forwards;
+}
+
+.about {
+  padding: 1rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  text-shadow: 1px 1px 2px #222, -1px 1px 2px #222, 0px 1px 2px #222, 1px 0px 2px #222, -1px 0px 2px #222, 0px 0px 2px #222, 1px -1px 2px #222, -1px -1px 2px #222, 0px -1px 2px #222;
+  justify-content: space-around;
+  background: radial-gradient(circle at center, #0000 25vmin, #222 0), var(--classic-target) 50% 50%/50vmin 50vmin;
+  background-repeat: no-repeat;
+}
+
+.creation {
+  font-size: 1.5rem;
+  align-self: start;
+}
+
+#about:checked ~ .game-container .about {
+  display: flex;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes target-mvt {
+  from {
+    transform: translate(-10vw);
+  }
+  to {
+    transform: translate(110vw);
+  }
+}
+@keyframes target-mvt-2 {
+  0% {
+    transform: translate(-7.5vh, 0vh);
+  }
+  25% {
+    transform: translate(20vw, 2.5vh);
+  }
+  50% {
+    transform: translate(50vw, 0vh);
+  }
+  75% {
+    transform: translate(80vw, -2.5vh);
+  }
+  100% {
+    transform: translate(calc(100vw + 7.5vh), 0vh);
+  }
+}
+@keyframes time-left {
+  0% {
+    transform: scaleX(1);
+    background: #1414b8;
+  }
+  33% {
+    transform: scaleX(0.66);
+    background: #14b814;
+  }
+  66% {
+    transform: scaleX(0.33);
+    background: #b86614;
+  }
+  83% {
+    transform: scaleX(0.17);
+    background: #b81414;
+  }
+  100% {
+    transform: scaleX(0);
+    background: #cc0000;
+  }
+}
+@keyframes game-ended {
+  0%, 95% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@media (orientation: portrait) {
+  .game-infos {
+    background: #555;
+  }
+
+  .target-container {
+    flex-direction: row;
+  }
+
+  .label-target {
+    top: -7.5vmin;
+    left: 0;
+  }
+
+  @keyframes target-mvt {
+    from {
+      transform: translate(0, -10vh);
+    }
+    to {
+      transform: translate(0, 110vh);
+    }
+  }
+  @keyframes target-mvt-2 {
+    0% {
+      transform: translate(0vw, calc(10vh - 7.5vw));
+    }
+    25% {
+      transform: translate(2.5vw, 25vh);
+    }
+    50% {
+      transform: translate(0vw, 50vh);
+    }
+    75% {
+      transform: translate(-2.5vw, 75vh);
+    }
+    100% {
+      transform: translate(0vw, calc(100vh + 7.5vw));
+    }
+  }
+}
+@media (max-width: 900px) {
+  :root {
+    font-size: 12px;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <input type="checkbox" id="launcher" class="hidden" />
+<input type="checkbox" id="rules" class="hidden" />
+<input type="checkbox" id="settings" class="hidden" />
+<!-- THEME -->
+<input type="radio" name="target" id="classic" class="hidden" checked />
+<input type="radio" name="target" id="alien" class="hidden" />
+<input type="radio" name="target" id="can" class="hidden" />
+<!-- SPEED -->
+<input type="radio" name="speed" id="slow" class="hidden" />
+<input type="radio" name="speed" id="normal" class="hidden" checked />
+<input type="radio" name="speed" id="fast" class="hidden" />
+<!-- LANGUAGE -->
+<input type="checkbox" id="language" class="hidden" />
+<!-- TARGETS -->
+<input type="checkbox" name="" id="target-1" class="hidden" />
+<input type="checkbox" name="" id="target-2" class="hidden" />
+<input type="checkbox" name="" id="target-3" class="hidden" />
+<input type="checkbox" name="" id="target-4" class="hidden" />
+<input type="checkbox" name="" id="target-5" class="hidden" />
+<input type="checkbox" name="" id="target-6" class="hidden" />
+<input type="checkbox" name="" id="target-7" class="hidden" />
+<input type="checkbox" name="" id="target-8" class="hidden" />
+<input type="checkbox" name="" id="target-9" class="hidden" />
+<input type="checkbox" name="" id="target-10" class="hidden" />
+<input type="checkbox" name="" id="target-11" class="hidden" />
+<input type="checkbox" name="" id="target-12" class="hidden" />
+<input type="checkbox" name="" id="target-13" class="hidden" />
+<input type="checkbox" name="" id="target-14" class="hidden" />
+<input type="checkbox" name="" id="target-15" class="hidden" />
+<input type="checkbox" name="" id="target-16" class="hidden" />
+<input type="checkbox" name="" id="target-17" class="hidden" />
+<input type="checkbox" name="" id="target-18" class="hidden" />
+<input type="checkbox" name="" id="target-19" class="hidden" />
+<input type="checkbox" name="" id="target-20" class="hidden" />
+
+
+<!-- ABOUT -->
+<input type="checkbox" name="" id="about" class="hidden" />
+
+<div class="game-container">
+  <div class="bg-container"></div>
+  <div class="homepage">
+    <div class="game-name">
+      <h1>CSShoot game</h1>
+    </div>
+    <div class="game-actions">
+      <label for="launcher" class="launcher-label homepage-label">
+        <span class="lang-en">play</span>
+        <span class="lang-fr">jouer</span>
+      </label>
+      <label for="rules" class="rules-label homepage-label">
+        <span class="lang-en">rules</span>
+        <span class="lang-fr">règles</span>
+      </label>
+      <label for="settings" class="settings-label homepage-label">
+        <span class="lang-en">settings</span>
+        <span class="lang-fr">paramètres</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="settings-wrapper">
+    <div class="title">
+      <h2>
+        <span class="lang-en">SETTINGS</span>
+        <span class="lang-fr">PARAMÈTRES</span>
+      </h2>
+    </div>
+
+    <div class="settings-elts-wrapper">
+      <div class="elt-title">
+        <span class="lang-en">Theme</span>
+        <span class="lang-fr">Thème</span>
+      </div>
+      <div class="target-choice-container">
+        <label for="classic" class="classic-target target-choice-label">
+        </label>
+        <label for="alien" class="alien-target target-choice-label"> </label>
+        <label for="can" class="can-target target-choice-label"> </label>
+        <span>
+          <span class="lang-en">classic</span>
+          <span class="lang-fr">classique</span>
+        </span>
+        <span>alien</span>
+        <span>
+          <span class="lang-en">can</span>
+          <span class="lang-fr">boîte</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="settings-elts-wrapper">
+      <div class="elt-title">
+        <span class="lang-en">speed</span>
+        <span class="lang-fr">vitesse</span>
+      </div>
+      <div class="speed-choice-container">
+        <label for="slow" class="slow-target speed-choice-label">
+          <span class="lang-en">slow</span>
+          <span class="lang-fr">lent</span>
+        </label>
+        <label for="normal" class="normal-target speed-choice-label"
+          >normal
+        </label>
+        <label for="fast" class="fast-target speed-choice-label">
+          <span class="lang-en">fast</span>
+          <span class="lang-fr">rapide</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-elts-wrapper">
+      <div class="elt-title">
+        <span class="lang-en">language</span>
+        <span class="lang-fr">langue</span>
+      </div>
+      <div class="language-choice-container">
+        <span>EN</span>
+        <label for="language" class="language-choice-label"></label>
+        <span>FR</span>
+      </div>
+    </div>
+
+    <label for="settings" class="back-btn">
+      <span class="lang-en">back</span>
+      <span class="lang-fr">retour</span>
+    </label>
+  </div>
+
+  <div class="rules-wrapper">
+    <h2 class="title">
+      <span class="lang-en">RULES</span>
+      <span class="lang-fr">RÈGLES</span>
+    </h2>
+    <p>
+      <span class="lang-en"
+        >The aim is to shoot at the 20 targets within 30 seconds.</span
+      >
+      <span class="lang-fr"
+        >Le but du jeu est de tirer sur les 20 cibles en 30 secondes.</span
+      >
+    </p>
+    <label for="rules" class="back-btn">
+      <span class="lang-en">back</span>
+      <span class="lang-fr">retour</span>
+    </label>
+  </div>
+
+  <div class="game-board">
+    <div class="game-infos">
+      <div class="info-container">
+        <span>TIME</span>
+        <div class="time-bar-container"></div>
+      </div>
+      <div class="info-container">
+        <span>SCORE</span>
+        <div class="game-score"></div>
+      </div>
+    </div>
+    <div class="target-container">
+      <label for="target-1" class="label-1 label-target"></label>
+      <label for="target-11" class="label-11 label-target"></label>
+      <label for="target-2" class="label-2 label-target"></label>
+      <label for="target-12" class="label-12 label-target"></label>
+      <label for="target-3" class="label-3 label-target"></label>
+      <label for="target-13" class="label-13 label-target"></label>
+      <label for="target-4" class="label-4 label-target"></label>
+      <label for="target-14" class="label-14 label-target"></label>
+      <label for="target-5" class="label-5 label-target"></label>
+      <label for="target-15" class="label-15 label-target"></label>
+      <label for="target-6" class="label-6 label-target"></label>
+      <label for="target-16" class="label-16 label-target"></label>
+      <label for="target-7" class="label-7 label-target"></label>
+      <label for="target-17" class="label-17 label-target"></label>
+      <label for="target-8" class="label-8 label-target"></label>
+      <label for="target-18" class="label-18 label-target"></label>
+      <label for="target-9" class="label-9 label-target"></label>
+      <label for="target-19" class="label-19 label-target"></label>
+      <label for="target-10" class="label-10 label-target"></label>
+      <label for="target-20" class="label-20 label-target"></label>
+    </div>
+
+    <div class="last-scene looser">
+      <span class="lang-en">YOU LOOSE !!!</span>
+      <span class="lang-fr">PERDU !!!</span>
+      
+    </div>
+
+    <div class="last-scene winner">
+      <span class="lang-en">YOU WIN !!!</span>
+      <span class="lang-fr">GAGNÉ !!!</span>
+      
+    </div>
+
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+      <script id="rendered-js" >
+/*
+
+CSSHOOT GAME is a pure css game, I use nor js neither image to build it.
+To win, you have to shoot 20 targets within 30 seconds.
+
+Good luck and have fun.
+
+maxew
+
+*/
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 

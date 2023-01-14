@@ -37,7 +37,7 @@ li
           <a class="nav-link text-light" href="privacy.html">Privacy Policy</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link text-light" href="contactus.php">Contact US</a>
+          <a class="nav-link text-light" href="contactus.php">Contact</a>
         </li>
 
       </ul>

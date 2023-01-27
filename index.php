@@ -16,44 +16,43 @@
 
   
 
-<body class="bg-dark">
+<body style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);">
   
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" href="index.php"><span class="game" style="color: White;">Game</span><span class="hub" style="color:orange ;">Hub</span></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #330867;">
+  <a class="navbar-brand ml-2" href="index.php"><span class="game" style="color: White;">Game</span><span class="zone" style="color:orange ;">Zone</span></a>
+  <button  class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span  class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: end;">
+  <div class="collapse navbar-collapse " id="navbarSupportedContent" style="justify-content: end;">
     <ul class="navbar-nav" style="margin-right: 5cm;">
-
-      <!-- <li class="nav-item active">
-        <a class="nav-link text-light" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li> -->
-      <li class="nav-item active">
-        <a class="nav-link text-light" href="./assest/contactus.php">Contact</a>
-      </li>
       <li class="nav-item active">
         <a class="nav-link text-light" href="Privacy.php">Privacy Policy</a>
       </li>
-
     </ul>
   </div>
 </nav>
 
-  <div class="container">
+  <div class="container mt-5">
     <div class="row">      
       <div class="col-md-12 col-sm-12 col-xs-12 "><h3 class="text-light">Top Games</h3>
-        <div class="row">
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Cube Game</h5>
-            <a href="./Game/cube.html"><img src="./assest/image/cube-img.png" alt="Cube" href="" style="width:100%" /></a>
+        <div class="row mt-5">
+          
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <a href="./Game/cube.html"><img src="./assest/image/cube-img.png" alt="Cube" href="" style="width:100%" />
+            <h5 class="text-light mt-4">Cube Game</h5></a>
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Colorn Game</h5>
-            <a href="./Game/coloron.html"><img src="./assest/image/colorn-img.png" alt="Colorn" style="width:100%" height="91%"/></a>
+          
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <a href="./Game/coloron.html"><img src="./assest/image/colorn-img.png" alt="Colorn" style="width:100%" height= "86%" />
+            <h5 class="text-light mt-4">Colorn Game</h5></a>
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Pinball Game</h5>
-          <a href="./Game/pinball.html"><img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
+          
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <a href="./Game/pinball.html"><img src="./assest/image/pinball.jpg" alt="Pinball" style="width:100%" height= "86%" />
+            <h5 class="text-light mt-4">Pinball Game</h5></a>
           </div>
+        
         </div>
       </div>
     </div>
@@ -62,58 +61,180 @@
 <div class="container mt-5">
   <div class="row">      
     <div class="col-md-12 col-sm-12 col-xs-12 "><h3 class="text-light">Action Games</h3>
-      <div class="row">
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">First</h5>
-          <img src="./assest/image/img1.webp" alt="Fjords" style="width:100%" />
+      <div class="row mt-5">
+          
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/snake.html"><img src="./assest/image/snakegame.png" alt="Fjords" style="width:100%" height="80%"   />
+          <h5 class="text-light mt-4">Snake Game</h5></a>
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Second</h5>
-          <img src="./assest/image/img 4.jpg" alt="Fjords" style="width:100%" height="73%"/>
+        
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/tic-tac.html"><img src="./assest/image/tic-tac-toe.png" alt="Fjords" style="width:100%" />
+          <h5 class="text-light mt-4">Tic Tac Toe Game</h5></a>
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Third</h5>
-          <img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
+        
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/corona.html"><img src="./assest/image/coronagame.jpg" alt="Fjords" style="width:100%" />
+          <h5 class="text-light mt-4">Corona Game</h5></a>
         </div>
+      
       </div>
     </div>
   </div>
 </div>
 
-  <div class="container">
+  <div class="container mt-5 mb-5">
     <div class="row">      
       <div class="col-md-12 col-sm-12 col-xs-12 "><h3 class="text-light">Advanture Games</h3>
-        <div class="row">
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">First</h5>
-            <img src="./assest/image/img1.webp" alt="Fjords" style="width:100%" />
+        <div class="row mt-5">
+          
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/cardmatch.html"><img src="./assest/image/card.jpg" alt="Fjords" style="width:100%" height="79%"/>
             <!-- <a href="http://www.pogo.com"> Shell crros</a> -->
+            <h5 class="text-light mt-4">Card Matching Game</h5></a>
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Second</h5>
-            <img src="./assest/image/img 4.jpg" alt="Fjords" style="width:100%" height="73%"/>
+          
+          <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/planet.html"><img src="./assest/image/saveearth.jpg" alt="Fjords" style="width:100%" />
+            <h5 class="text-light mt-4">Save the Planet Game</h5></a>
           </div>
-          <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Third</h5>
-            <img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
+          
+          <div class="col-md-4 col-sm-12 col-xs-12">
+          <a href="./Game/speedmath.html"><img src="./assest/image/math.jpg" alt="Fjords" style="width:100%" height="79%" />
+            <h5 class="text-light mt-4">Speed Math</h5></a>
           </div>
+        
         </div>
       </div>
     </div>
   </div>
 
-
-<div class="container">
-  <div class="row">      
-    <div class="col-md-12 col-sm-12 col-xs-12 "><h3 class="text-light">Puzzle Games</h3>
-      <div class="row">
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">First</h5>
-          <img src="./assest/image/img1.webp" alt="Fjords" style="width:100%" />
+    <div class="container  mt-5 ">
+      <div class="row g-0  ">      
+          <div class="row mt-5 "> 
+            <div class="card col-md-12 col-sm-12 col-xs-12 rounded-4" style="background-color: #330867;" >
+          
+                <div class="row ">     
+                  <div class="col-md-4 col-sm-4 col-xs-4 ">
+                    <img src="./assest/image/shoot.jpg" class="img-thumbnail" alt="..."  >
+                  </div>
+                
+                  <div class="col-md-8 col-sm-8 col-xs-8">
+                    <div class="card-body">
+                      <h5 class="card-title" style="color:white ;">Shoot Game</h5>
+                      <p class="card-text" style="color:white ;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <a href="./Game/shoot.html" ><button class="btn-lg">Play</button></a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Second</h5>
-          <img src="./assest/image/img 4.jpg" alt="Fjords" style="width:100%" height="73%"/>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12"><h5 class="text-light">Third</h5>
-          <img src="./assest/image/img3.jpg" alt="Fjords" style="width:100%" />
-        </div>
-      </div>
     </div>
-  </div>
-</div>
+
+   <div class="container  mt-5">
+      <div class="row g-0">      
+        <div class="row mt-5"> 
+            
+            <div class="card  col-md-12 col-sm-12 col-xs-12" style="background-color: #330867;" >
+            
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                  <img src="./assest/image/cube-img.png" class="img-thumbnail" alt="..."  >
+                </div>
+            
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color:white ;">Cube Game</h5>
+                    <p class="card-text" style="color:white ;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="./Game/cube.html" ><button class="btn-lg">Play</button></a>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>   
+        </div>
+   </div>
+
+   <div class="container  mt-5">
+      <div class="row g-0">      
+        <div class="row mt-5"> 
+            
+            <div class="card  col-md-12 col-sm-12 col-xs-12" style="background-color: #330867;" >
+            
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                  <img src="./assest/image/colorn-img.png" class="img-thumbnail" alt="..."  >
+                </div>
+            
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color:white ;">Colorn Game</h5>
+                    <p class="card-text" style="color:white ;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="./Game/coloron.html" ><button class="btn-lg">Play</button></a>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>   
+        </div>
+   </div>
+
+   <div class="container  mt-5">
+      <div class="row g-0">      
+        <div class="row mt-5"> 
+            
+            <div class="card  col-md-12 col-sm-12 col-xs-12" style="background-color: #330867;" >
+            
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                  <img src="./assest/image/tic-tac-toe.png" class="img-thumbnail" alt="..."  >
+                </div>
+            
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color:white ;">Tic Tac Toe Game</h5>
+                    <p class="card-text" style="color:white ;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="./Game/tic-tac.html" ><button class="btn-lg">Play</button></a>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>   
+        </div>
+   </div>
+
+   <div class="container  mt-5">
+      <div class="row g-0">      
+        <div class="row mt-5"> 
+            
+            <div class="card  col-md-12 col-sm-12 col-xs-12" style="background-color: #330867;" >
+            
+                <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                  <img src="./assest/image/card.jpg" class="img-thumbnail" alt="..."  >
+                </div>
+            
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                  <div class="card-body">
+                    <h5 class="card-title" style="color:white ;">Card Matching Game</h5>
+                    <p class="card-text" style="color:white ;">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="./Game/cardmatch.html" ><button class="btn-lg">Play</button></a>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>   
+        </div>
+   </div>
+
+<br>
+<br>
+<br>
 <?php include './assest/footer.php'; ?>
 
 </body>

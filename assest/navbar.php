@@ -1,6 +1,6 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" href="index.php"><span class="game" style="color: White;">Game</span><span class="hub" style="color:orange ;">Hub</span></a>
+<nav class="navbar navbar-expand-lg navbar-light "  style="background-color: #330867;">
+  <a class="navbar-brand" href="index.php"><span class="game" style="color: White;">Game</span><span class="Zone" style="color:orange ;">Zone</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,7 +14,7 @@
       <li class="nav-item active">
         <a class="nav-link text-light" href="Privacy.php">Privacy Policy</a>
       </li>
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Category
         </a>
@@ -24,7 +24,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#"><h6 class="text-light">Puzzle</h6></a>
         </div>
-      </li> 
+      </li>  -->
 
     </ul>
   </div>

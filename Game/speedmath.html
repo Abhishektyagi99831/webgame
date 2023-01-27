@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+  
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+  
+  <title>CodePen - Speed Math</title>
+  
+  
+  
+  
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Secular+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+body,
+.container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  background: -webkit-linear-gradient(left, #0f2027, #203a43, #2c5364);
+}
+.center,
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timer {
+  position: absolute;
+  top: 5px;
+  color: #c0c0c0;
+  font-family: "Secular One", sans-serif;
+  font-size: 7vh;
+}
+.minute::after {
+  content: ":";
+}
+.num2::after {
+  content: "=";
+}
+.math,
+.result {
+  font-family: "Kanit", sans-serif;
+  color: #fcde67;
+  font-size: 10vh;
+}
+.result {
+  width: 18vh;
+  height: 10vh;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1vh solid #fcde67;
+}
+.result::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.result:focus {
+  outline: transparent;
+}
+.scoreBoard {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: -webkit-linear-gradient(left, #b92b27, #1565c0);
+  flex-direction: column;
+  gap: 2vh;
+}
+.scorePoint {
+  color: #fff;
+  font-size: 10vh;
+}
+.newGame {
+  width: 25vh;
+  height: 8vh;
+  border-radius: 5vh;
+  font-size: 4vh;
+  color: #fff7;
+  font-family: arial;
+  font-weight: bold;
+  background-color: transparent;
+  border: solid 1vh #fff7;
+  cursor: pointer;
+}
+.button {
+  position: absolute;
+  width: 40vh;
+  height: 10vh;
+  border-radius: 5vh;
+  font-size: 4vh;
+  z-index: 10;
+  color: #fff;
+  border: #fff 1vh solid;
+  background-color: transparent;
+}
+.button:hover {
+  background: #fff2;
+}
+.blur {
+  filter: blur(10px);
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <div class="container center blur">
+  <div class="timer center">
+    <div class="minute">00</div>
+    <div class="second">00</div>
+  </div>
+  <div class="math center">
+    <div class="num1">00</div>
+    <div class="symbol">+</div>
+    <div class="num2">00</div>
+    <input type="number" class="result">
+  </div>
+</div>
+<button class="button">Start</button>
+<div class="scoreBoard center">
+  <div class="scorePoint">Score :</div>
+  <div class="newGame center">New Game</div>
+</div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+      <script id="rendered-js" >
+window.onload = function () {
+  var score;
+  const num1 = document.querySelector(".num1");
+  const num2 = document.querySelector(".num2");
+  const result = document.querySelector(".result");
+  const symbol = document.querySelector(".symbol");
+  const minute = document.querySelector(".minute");
+  const second = document.querySelector(".second");
+  const output = document.querySelector(".scoreBoard");
+  const scorePoint = document.querySelector(".scorePoint");
+  const newGame = document.querySelector(".newGame");
+  const startGame = document.querySelector(".button");
+  const container = document.querySelector(".container");
+  var timer;
+  var min, sec;
+  var a, b, answer;
+  var rndSymbol;
+  min = 1;
+  sec = 0;
+  var score = 0;
+
+  startGame.addEventListener("click", function () {
+    startGame.style.display = "none";
+    container.classList.remove("blur");
+    result.focus();
+    timerOn();
+    mathProblem();
+  });
+
+  function timerOn() {
+    timer = setTimeout(timerOn, 1000);
+    if (sec <= 0 && min <= 0) {
+      second.innerHTML = sec < 10 ? "0" + sec : sec;
+      output.style.zIndex = 1;
+      scorePoint.innerHTML = "Score : " + score;
+      clearTimeout(timer);
+    } else if (sec <= 0) {
+      min--;
+      sec = 59;
+    }
+    minute.innerHTML = min < 10 ? "0" + min : min;
+    second.innerHTML = sec < 10 ? "0" + sec : sec;
+    sec--;
+  }
+
+  function mathProblem() {
+    var arrSymbol = ["+", "-", "×", "÷"];
+    rndSymbol = Math.floor(Math.random() * 3 + 0);
+    console.log(arrSymbol[rndSymbol]);
+    switch (arrSymbol[rndSymbol]) {
+      case "+":
+        a = Math.floor(Math.random() * 99 + 1);
+        b = Math.floor(Math.random() * 99 + 1);
+        answer = a + b;
+        num1.innerHTML = a;
+        num2.innerHTML = b;
+        break;
+      case "-":
+        a = Math.floor(Math.random() * 99 + 1);
+        b = Math.floor(Math.random() * 99 + 1);
+        num1.innerHTML = Math.max(a, b);
+        num2.innerHTML = Math.min(a, b);
+        answer = Math.max(a, b) - Math.min(a, b);
+        break;
+      case "×":
+        a = Math.floor(Math.random() * 11 + 2);
+        b = Math.floor(Math.random() * 50 + 1);
+        answer = a * b;
+        num1.innerHTML = a;
+        num2.innerHTML = b;
+        break;
+      case "÷":
+        a = Math.floor(Math.random() * 11 + 2);
+        b = Math.floor(Math.random() * 50 + 1);
+        answer = b;
+        num1.innerHTML = a * b;
+        num2.innerHTML = a;
+        break;}
+
+    symbol.innerHTML = arrSymbol[rndSymbol];
+  }
+  result.addEventListener("keyup", function () {
+    if (result.value == answer) {
+      result.value = "";
+      mathProblem();
+      score++;
+    }
+  });
+  newGame.addEventListener("click", function () {
+    score = 0;
+    output.style.zIndex = -1;
+    min = 1;
+    sec = 0;
+    result.value = "";
+    mathProblem();
+    timerOn();
+  });
+};
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 

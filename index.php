@@ -19,7 +19,10 @@
 <body style="background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);">
   
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #330867;">
-  <a class="navbar-brand ml-2" href="index.php"><span class="game" style="color: White;">Game</span><span class="zone" style="color:orange ;">Zone</span></a>
+  <a class="navbar-brand ml-2" href="index.php">
+   <img src="./assest/image/logoe.png" style="width:100px"/>
+  <!-- <span class="game" style="color: White;">Game</span><span class="zone" style="color:orange ;">Zone</span> -->
+</a>
   <button  class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span  class="navbar-toggler-icon"></span>
   </button>

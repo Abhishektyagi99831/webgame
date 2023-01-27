@@ -1,6 +1,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-light "  style="background-color: #330867;">
-  <a class="navbar-brand" href="index.php"><span class="game" style="color: White;">Game</span><span class="Zone" style="color:orange ;">Zone</span></a>
+  <a class="navbar-brand ml-2" href="index.php">
+   <img src="./assest/image/logoe.png" style="width:100px"/>
+  <!-- <span class="game" style="color: White;">Game</span><span class="zone" style="color:orange ;">Zone</span> -->
+</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
